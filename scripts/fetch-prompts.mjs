@@ -5,11 +5,11 @@ const RAW_FILE_URL = "https://raw.githubusercontent.com/";
 const MIRRORF_FILE_URL = "http://raw.fgit.ml/";
 
 const RAW_CN_URL = "PlexPt/awesome-chatgpt-prompts-zh/main/prompts-zh.json";
-const CN_URL = MIRRORF_FILE_URL + RAW_CN_URL;
+const CN_URL = RAW_FILE_URL + RAW_CN_URL;
 const RAW_TW_URL = "PlexPt/awesome-chatgpt-prompts-zh/main/prompts-zh-TW.json";
-const TW_URL = MIRRORF_FILE_URL + RAW_TW_URL;
+const TW_URL = RAW_FILE_URL + RAW_TW_URL;
 const RAW_EN_URL = "f/awesome-chatgpt-prompts/main/prompts.csv";
-const EN_URL = MIRRORF_FILE_URL + RAW_EN_URL;
+const EN_URL = RAW_FILE_URL + RAW_EN_URL;
 const FILE = "./public/prompts.json";
 
 const ignoreWords = ["涩涩", "魅魔", "澀澀"];
@@ -84,7 +84,8 @@ async function fetchEN() {
 async function main() {
   Promise.all([fetchCN(), fetchTW(), fetchEN()])
     .then(([cn, tw, en]) => {
-      fs.writeFile(FILE, JSON.stringify({ cn, tw, en }));
+      // fs.writeFile(FILE, JSON.stringify({ cn, tw, en }));
+      fs.writeFile(FILE, JSON.stringify({ cn: [], tw: [], en }));
     })
     .catch((e) => {
       console.error("[Fetch] failed to fetch prompts");
