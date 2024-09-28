@@ -604,9 +604,9 @@ export function ChatActions(props: {
           items={models.map((m) => ({
             title: `${m.displayName}${
               m?.provider?.providerName
-                ? "(" + m?.provider?.providerName + ")"
+                ? " (" + m?.provider?.providerName + ")"
                 : ""
-            }`,
+            }${m?.cost ? ` ${m?.cost}` : ""}`,
             value: `${m.name}@${m?.provider?.providerName}`,
           }))}
           onClose={() => setShowModelSelector(false)}

@@ -64,6 +64,7 @@ export interface LLMUsage {
 export interface LLMModel {
   name: string;
   displayName?: string;
+  cost?: string;
   available: boolean;
   provider: LLMModelProvider;
   sorted: number;

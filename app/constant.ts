@@ -253,23 +253,23 @@ export const KnowledgeCutOffDate: Record<string, string> = {
 };
 
 const openaiModels = [
-  "gpt-3.5-turbo",
-  // "gpt-3.5-turbo-1106",
-  // "gpt-3.5-turbo-0125",
-  "gpt-4",
-  // "gpt-4-0613",
-  // "gpt-4-32k",
-  // "gpt-4-32k-0613",
-  "gpt-4-turbo",
-  // "gpt-4-turbo-preview",
-  "gpt-4o",
-  // "gpt-4o-2024-05-13",
-  "gpt-4o-mini",
-  // "gpt-4o-mini-2024-07-18",
-  // "gpt-4-vision-preview",
-  // "gpt-4-turbo-2024-04-09",
-  // "gpt-4-1106-preview",
-  "dall-e-3",
+  { name: "gpt-3.5-turbo", cost: "$" },
+  // { name: "gpt-3.5-turbo-1106", cost: "$" },
+  // { name: "gpt-3.5-turbo-0125", cost: "$" },
+  { name: "gpt-4", cost: "$$$$" },
+  // { name: "gpt-4-0613", cost: "$" },
+  // { name: "gpt-4-32k", cost: "$" },
+  // { name: "gpt-4-32k-0613", cost: "$" },
+  { name: "gpt-4-turbo", cost: "$$$" },
+  // { name: "gpt-4-turbo-preview", cost: "$" },
+  { name: "gpt-4o", cost: "$$" },
+  // { name: "gpt-4o-2024-05-13", cost: "$" },
+  { name: "gpt-4o-mini", cost: "$" },
+  // { name: "gpt-4o-mini-2024-07-18", cost: "$" },
+  // { name: "gpt-4-vision-preview", cost: "$" },
+  // { name: "gpt-4-turbo-2024-04-09", cost: "$" },
+  // { name: "gpt-4-1106-preview", cost: "$" },
+  { name: "dall-e-3", cost: "4¢ per img" },
 ];
 
 const googleModels = [
@@ -280,13 +280,13 @@ const googleModels = [
 ];
 
 const anthropicModels = [
-  "claude-instant-1.2",
-  "claude-2.0",
-  "claude-2.1",
-  "claude-3-sonnet-20240229",
-  "claude-3-opus-20240229",
-  "claude-3-haiku-20240307",
-  "claude-3-5-sonnet-20240620",
+  // { name: "claude-instant-1.2", cost: "$"},
+  // { name: "claude-2.0", cost: "$"},
+  // { name: "claude-2.1", cost: "$"},
+  { name: "claude-3-sonnet-20240229", cost: "$$" },
+  { name: "claude-3-opus-20240229", cost: "$$$$" },
+  { name: "claude-3-haiku-20240307", cost: "$" },
+  { name: "claude-3-5-sonnet-20240620", cost: "$$" },
 ];
 
 const baiduModels = [
@@ -344,8 +344,9 @@ const iflytekModels = [
 
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
-  ...openaiModels.map((name) => ({
-    name,
+  ...openaiModels.map((model) => ({
+    name: model.name,
+    cost: model.cost,
     available: true,
     sorted: seq++, // Global sequence sort(index)
     provider: {
@@ -355,9 +356,9 @@ export const DEFAULT_MODELS = [
       sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
     },
   })),
-  // ...openaiModels.map((name) => ({
-  //   name,
-  //   available: true,
+  // ...openaiModels.map((model) => ({
+  //   name: model.name,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "azure",
@@ -368,7 +369,7 @@ export const DEFAULT_MODELS = [
   // })),
   // ...googleModels.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "google",
@@ -377,8 +378,9 @@ export const DEFAULT_MODELS = [
   //     sorted: 3,
   //   },
   // })),
-  ...anthropicModels.map((name) => ({
-    name,
+  ...anthropicModels.map((model) => ({
+    name: model.name,
+    cost: model.cost,
     available: true,
     sorted: seq++,
     provider: {
@@ -390,7 +392,7 @@ export const DEFAULT_MODELS = [
   })),
   // ...baiduModels.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "baidu",
@@ -401,7 +403,7 @@ export const DEFAULT_MODELS = [
   // })),
   // ...bytedanceModels.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "bytedance",
@@ -412,7 +414,7 @@ export const DEFAULT_MODELS = [
   // })),
   // ...alibabaModes.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "alibaba",
@@ -423,7 +425,7 @@ export const DEFAULT_MODELS = [
   // })),
   // ...tencentModels.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "tencent",
@@ -434,7 +436,7 @@ export const DEFAULT_MODELS = [
   // })),
   // ...moonshotModes.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "moonshot",
@@ -445,7 +447,7 @@ export const DEFAULT_MODELS = [
   // })),
   // ...iflytekModels.map((name) => ({
   //   name,
-  //   available: true,
+  //   available: false,
   //   sorted: seq++,
   //   provider: {
   //     id: "iflytek",
