@@ -263,6 +263,7 @@ const openaiModels = [
   { name: "gpt-4-turbo", cost: "$$$" },
   // { name: "gpt-4-turbo-preview", cost: "$" },
   { name: "gpt-4o", cost: "$$" },
+  { name: "gpt-4o-2024-08-06", cost: "$" },
   // { name: "gpt-4o-2024-05-13", cost: "$" },
   { name: "gpt-4o-mini", cost: "$" },
   // { name: "gpt-4o-mini-2024-07-18", cost: "$" },
